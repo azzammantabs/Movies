@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="genre">Genre</string>
+    <string name="avenger">avenger</string>
+    <string name="action">action</string>
+    <string name="_2019">2019</string>
+    <string name="trailers">Trailers</string>
+    <string name="ulasan">Ulasan</string>
+    <string name="overview">overview</string>
+</resources>
