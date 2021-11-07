@@ -38,8 +38,8 @@ class MoviesViewModel : ViewModel() {
                 responseBody: ByteArray?
             ) {
                 Log.i(TAG, "setMovies OnSuccess...")
-                val result = responseBody.toString()
-                Log.d(TAG, result)
+                val result: String? = responseBody?.let { String(it) }
+                result?.let { Log.d(TAG, it) }
                 try {
                     val jsonObject = JSONObject(result)
                     val jsonArray = jsonObject.getJSONArray("results")

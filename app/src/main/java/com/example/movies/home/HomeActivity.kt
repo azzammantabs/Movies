@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movies.R
 import com.example.movies.adapter.GenresAdapter
 import com.example.movies.databinding.ActivityHomeBinding
 import com.example.movies.model.Genres
@@ -25,6 +26,9 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        //set toolbar
+        binding.tlHome.title = getString(R.string.app_name)
 
         //set view model
         homeViewModel = ViewModelProvider(

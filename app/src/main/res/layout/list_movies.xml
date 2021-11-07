@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="@dimen/dit_4dp"
-    android:layout_margin="@dimen/dit_4dp">
+    android:layout_margin="@dimen/dit_4dp"
+    android:elevation="@dimen/dit_4dp">
 
     <ImageView
         android:id="@+id/iv_movies_list"

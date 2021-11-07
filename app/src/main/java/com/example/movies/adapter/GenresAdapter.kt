@@ -37,7 +37,7 @@ class GenresAdapter(private val listGenres: ArrayList<Genres>) :
                 itemView.setOnClickListener {
                     //move to Movies Intent
                     val moviesIntent = Intent(itemView.context, MoviesActivity::class.java)
-                    moviesIntent.putExtra(MoviesActivity.EXTRA_ID_GENRES, genres.id)
+                    moviesIntent.putExtra(MoviesActivity.EXTRA_GENRES, genres)
                     itemView.context.startActivity(moviesIntent)
                 }
             }

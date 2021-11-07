@@ -8,13 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movies.adapter.MoviesAdapter
 import com.example.movies.databinding.ActivityMoviesBinding
+import com.example.movies.model.Genres
 import com.example.movies.model.Movies
 
 class MoviesActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = MoviesActivity::class.java.simpleName
-        const val EXTRA_ID_GENRES = "extra_id_genres"
+        const val EXTRA_GENRES = "extra_genres"
     }
 
     private lateinit var binding: ActivityMoviesBinding
@@ -28,7 +29,10 @@ class MoviesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //set genre id
-        val genreId = intent.getIntExtra(EXTRA_ID_GENRES, 0)
+        val genre = intent.getParcelableExtra<Genres>(EXTRA_GENRES)
+
+        //set toolbar
+        binding.tlMovies.title = genre?.name
 
         //set view model
         moviesViewModel = ViewModelProvider(
@@ -37,7 +41,7 @@ class MoviesActivity : AppCompatActivity() {
         ).get(MoviesViewModel::class.java)
 
         //call set genres
-        moviesViewModel.seMovies(genreId)
+        genre?.let { moviesViewModel.seMovies(it.id) }
 
         //call get genres
         moviesViewModel.getMovies().observe(this, Observer { listMovies ->

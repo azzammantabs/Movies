@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dit_4dp"
     android:background="@color/white"
     android:elevation="@dimen/dit_4dp"
-    android:padding="@dimen/dit_16dp"
-    android:layout_margin="@dimen/dit_4dp">
+    android:padding="@dimen/dit_16dp">
 
     <TextView
         android:id="@+id/tv_genres_list"
@@ -15,6 +15,6 @@
         android:text="@string/genre"
         android:textAllCaps="false"
         android:textColor="@color/primary"
-        android:textSize="@dimen/dit_36sp" />
+        android:textSize="@dimen/tv_16sp" />
 
 </RelativeLayout>
