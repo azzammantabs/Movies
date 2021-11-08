@@ -91,7 +91,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/tv_16sp" />
 
-            <VideoView
+            <com.google.android.youtube.player.YouTubePlayerView
                 android:id="@+id/vv_trailer_detail"
                 android:layout_width="200dp"
                 android:layout_height="120dp"
