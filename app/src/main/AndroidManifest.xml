@@ -3,6 +3,14 @@
     package="com.example.movies">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -12,20 +20,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movies">
         <activity
+            android:name=".detail.DetailActivity"
+            android:exported="false"
+            android:parentActivityName=".movies.MoviesActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".movies.MoviesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".home.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.HomeActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".detail.DetailActivity"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

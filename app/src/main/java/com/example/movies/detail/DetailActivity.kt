@@ -2,21 +2,18 @@ package com.example.movies.detail
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.movies.adapter.ReviewAdapter
+import com.example.movies.adapter.VideoAdapter
 import com.example.movies.databinding.ActivityDetailBinding
 import com.example.movies.helper.Constant.Companion.BASE_URL_IMAGE
-import com.example.movies.helper.Constant.Companion.BASE_URL_YOUTUBE
 import com.example.movies.model.Movies
 import com.example.movies.model.Reviewer
 import com.example.movies.model.Video
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
 
 
 class DetailActivity : AppCompatActivity() {
@@ -42,6 +39,10 @@ class DetailActivity : AppCompatActivity() {
 
         //set toolbar
         binding.tlDetail.title = movie.title
+        Log.i(TAG, movie.title)
+        //set toolbar
+        setSupportActionBar(binding.tlDetail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //setData()
         setData(movie)
@@ -80,11 +81,11 @@ class DetailActivity : AppCompatActivity() {
             if (listVideo != null) {
                 Log.i(TAG, "info Video: $listVideo")
                 this.listVideo = listVideo
-                //play trailer video
-                playVideo(listVideo[1])
+                //play video
+                showVideoTrailer()
                 Log.i(TAG, "call Video Success")
             } else {
-
+                Log.i(TAG, "info Video: $listVideo")
             }
         })
     }
@@ -115,43 +116,15 @@ class DetailActivity : AppCompatActivity() {
         binding.rvReviewDetail.adapter = reviewAdapter
     }
 
-    private fun playVideo(video: Video) {
-//        val mediaController = MediaController(this)
-//        binding.vvTrailerDetail.setMediaController(mediaController)
-        val apiKey = "$BASE_URL_YOUTUBE"
-//        val uid = Uri.parse(path)
-//        binding.vvTrailerDetail.setVideoURI(uid)
-//        binding.vvTrailerDetail.start()
-        // Get reference to the view of Video player
-        // Get reference to the view of Video player
 
-        binding.vvTrailerDetail.initialize(
-            apiKey,
-            object : YouTubePlayer.OnInitializedListener {
-                // Implement two methods by clicking on red
-                // error bulb inside onInitializationSuccess
-                // method add the video link or the playlist
-                // link that you want to play In here we
-                // also handle the play and pause
-                // functionality
-                override fun onInitializationSuccess(
-                    provider: YouTubePlayer.Provider,
-                    youTubePlayer: YouTubePlayer, b: Boolean
-                ) {
-                    youTubePlayer.loadVideo(video.key)
-                    youTubePlayer.play()
-                }
-
-                // Inside onInitializationFailure
-                // implement the failure functionality
-                // Here we will show toast
-                override fun onInitializationFailure(
-                    provider: YouTubePlayer.Provider,
-                    youTubeInitializationResult: YouTubeInitializationResult
-                ) {
-                    Toast.makeText(applicationContext, "Video player Failed", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
+    private fun showVideoTrailer() {
+        //set recycler view
+        binding.rvTrailerDetail.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvTrailerDetail.setHasFixedSize(true)
+        //set adapter
+        val videoAdapter = VideoAdapter(listVideo)
+        binding.rvTrailerDetail.adapter = videoAdapter
     }
+
 }

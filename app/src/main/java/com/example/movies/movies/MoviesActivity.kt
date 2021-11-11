@@ -33,6 +33,10 @@ class MoviesActivity : AppCompatActivity() {
 
         //set toolbar
         binding.tlMovies.title = genre?.name
+        genre?.let { Log.i(TAG, it.name) }
+        //set toolbar
+        setSupportActionBar(binding.tlMovies)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //set view model
         moviesViewModel = ViewModelProvider(
